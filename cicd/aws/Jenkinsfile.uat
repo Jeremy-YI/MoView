@@ -1,12 +1,12 @@
 pipeline {
-    agent 
+    agent {
         docker {
             image 'node:18.0.0'
             args '-u root:root'
         }
+    }
 
     environment {
-        S3_CREDENTIAL  = 's3'
         S3_REGION      = 'ap-southeast-2'
         WORKSPACE_PATH = '/var/lib/jenkins/workspace/aws-moview-frontend-uat/build' 
         BUCKET_NAME    = 's3://uat.moviezone.com.au'
@@ -37,9 +37,11 @@ pipeline {
 
         stage('Deploy to s3'){
             steps {
+                withAWS(credentials: 'jenkins_aws', region: 'ap-southeast-2') {
                 sh "aws configure set region ${S3_REGION}"
                 sh "aws s3 rm ${BUCKET_NAME} --recursive"
                 sh "aws s3 cp ${WORKSPACE_PATH}  ${BUCKET_NAME} --recursive"
+                }
             }
         }
     }
