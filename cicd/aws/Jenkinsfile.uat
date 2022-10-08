@@ -45,16 +45,5 @@ pipeline {
             }
         }
     }
-
-    post {
-        success {
-            echo "SUCCESSFUL!"
-            bitbucketStatusNotify(buildState: 'SUCCESSFUL')
-        }
-        failure {
-            echo "FAILED"
-            bitbucketStatusNotify(buildState: 'FAILED')
-        }
-    }
 }
 
