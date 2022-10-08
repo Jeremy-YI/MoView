@@ -9,7 +9,7 @@ pipeline {
     environment {
         S3_REGION      = 'ap-southeast-2'
         WORKSPACE_PATH = '/var/lib/jenkins/workspace/aws-moview-frontend-uat/build' 
-        BUCKET_NAME    = 's3://uat.moviezone.com.au'
+        BUCKET_NAME    = 's3://moviewforum.com'
     }
 
     stages {
@@ -43,6 +43,17 @@ pipeline {
                 sh "aws s3 cp ${WORKSPACE_PATH}  ${BUCKET_NAME} --recursive"
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo "SUCCESSFUL!"
+            bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+        }
+        failure {
+            echo "FAILED"
+            bitbucketStatusNotify(buildState: 'FAILED')
         }
     }
 }
