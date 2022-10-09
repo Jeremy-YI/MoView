@@ -41,6 +41,7 @@ pipeline {
                 sh "aws configure set region ${S3_REGION}"
                 sh "aws s3 rm ${BUCKET_NAME} --recursive"
                 sh "aws s3 cp ${WORKSPACE_PATH}  ${BUCKET_NAME} --recursive"
+                sh "aws cloudfront create-invalidation --distribution-id E35CXRGGO5DJMF --paths '/*'"
                 }
             }
         }
