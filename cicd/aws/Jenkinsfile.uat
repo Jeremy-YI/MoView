@@ -24,14 +24,14 @@ pipeline {
         stage('install packages') {
             steps {
                 echo "Installing packages"
-                sh 'npm install'         
+                sh 'yarn install'         
             }
         }
 
         stage('Build') {
             steps {
                 echo "Building"
-                sh 'npm run build'
+                sh 'yarn run build'
             }
         }
 
@@ -48,6 +48,14 @@ pipeline {
     }
     
     post {
+        success {
+            echo "WELL DONE!!"
+            bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+        }
+        failure {
+            echo "FAILED"
+            bitbucketStatusNotify(buildState: 'FAILED')
+        } 
         always {
             cleanWs()
         }
