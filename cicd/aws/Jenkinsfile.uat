@@ -49,12 +49,19 @@ pipeline {
     
     post {
         success {
-            echo "WELL DONE!!"
-            bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+            bitbucketStatusNotify(
+                buildState: 'SUCCESSFUL',
+                repoSlug: 'repoSlug aka moview-frontend',
+                commitId: env.GIT_COMMIT
+                )
         }
         failure {
             echo "FAILED"
-            bitbucketStatusNotify(buildState: 'FAILED')
+            bitbucketStatusNotify(
+                buildState: 'FAILED',
+                repoSlug: 'repoSlug aka moview-frontend',
+                commitId: env.GIT_COMMIT
+                )
         } 
         always {
             cleanWs()
