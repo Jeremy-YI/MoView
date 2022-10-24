@@ -6,16 +6,26 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from '@mui/icons-material/Star';
 import PropTypes from 'prop-types';
 
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   padding-left: 40%;
+//   margin-bottom: 40px;
+//   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
+//   }
+// `;
+
 const Container = styled.div`
+  width: 50vw;
   display: flex;
   flex-direction: column;
-  padding-left: 40%;
   margin-bottom: 40px;
   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
   }
 `;
 
 const Title = styled.h1`
+  max-width: 100%;
   font-size: 30px;
   font-weight: 700;
   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
@@ -27,17 +37,23 @@ const SubTitle = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 50%;
+  width: 100%;
   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
   }
 `;
 
 const Tag = styled.span`
+  margin-right: 10px;
   font-size: 18px;
   font-weight: 700;
   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
   }
+  :hover {
+    color: #1d39c4;
+    cursor: pointer;
+  }
 `;
+
 const IconGroup = styled.span`
   display: flex;
   flex-direction: row;
@@ -48,7 +64,7 @@ const IconGroup = styled.span`
 `;
 
 // TO DO: tags should come from redux and backend
-const TAG_LIST = ['Tag1', 'Tag2', 'Tag3', 'Tag4'];
+const TAG_LIST = ['The Imitation Game', 'Benedict Cumberbatch', 'World War II', 'Sciences'];
 
 function ReviewTitle({ title }) {
   // TO DO: use reviewId to get Tags
@@ -66,9 +82,16 @@ function ReviewTitle({ title }) {
         </Grid>
 
         <IconGroup>
-          <FavoriteIcon sx={{ fontSize: { sm: 15, lg: 30 }, color: 'red' }} />
+          <FavoriteIcon sx={{ fontSize: { sm: 15, lg: 30 }, color: 'red', cursor: 'pointer' }} />
           20
-          <StarIcon sx={{ fontSize: { sm: 15, lg: 30 }, color: 'yellow', marginLeft: '10px' }} />
+          <StarIcon
+            sx={{
+              fontSize: { sm: 15, lg: 30 },
+              color: 'yellow',
+              marginLeft: '10px',
+              cursor: 'pointer',
+            }}
+          />
           30
         </IconGroup>
       </SubTitle>

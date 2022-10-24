@@ -7,11 +7,15 @@ import AuthorCard from '../../components/pages/ReviewPage/AuthorCard';
 import ReviewContent from '../../components/pages/ReviewPage/ReviewContent';
 
 const Container = styled.div`
-  background-color: ${(props) => props.theme.palette.primary.background_light_yellow};
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${(props) => props.theme.palette.primary.background_light_gray};
+
   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
   }
 `;
+
 const Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -20,6 +24,7 @@ const Content = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
   }
 `;
+
 function Review() {
   // TO DO: use this id from path fetch post from backend
   // eslint-disable-next-line no-unused-vars
@@ -27,7 +32,7 @@ function Review() {
 
   return (
     <Container>
-      <ReviewTitle title="This is a review" />
+      <ReviewTitle title="The beginning of computer sciences during World War II" />
       <Content>
         <MovieCard movieId={1} />
         <ReviewContent />
