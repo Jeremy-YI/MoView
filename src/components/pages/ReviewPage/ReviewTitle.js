@@ -6,15 +6,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from '@mui/icons-material/Star';
 import PropTypes from 'prop-types';
 
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   padding-left: 40%;
-//   margin-bottom: 40px;
-//   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
-//   }
-// `;
-
 const Container = styled.div`
   width: 50%;
   display: flex;
