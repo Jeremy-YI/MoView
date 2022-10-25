@@ -16,6 +16,8 @@ const theme = createTheme({
     secondary: {
       main: '#edf2ff',
       background_light_gray: '#E3E3E3',
+      tag_text_blue: '#1d39c4',
+      tag_hover_blue: '#597ef7',
     },
   },
   colors: {

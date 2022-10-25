@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 // `;
 
 const Container = styled.div`
-  width: 50vw;
+  width: 50%;
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
@@ -43,13 +43,14 @@ const SubTitle = styled.div`
 `;
 
 const Tag = styled.span`
+  color: ${(props) => props.theme.palette.secondary.tag_text_blue};
   margin-right: 10px;
   font-size: 18px;
   font-weight: 700;
   @media (min-width: ${(props) => props.theme.breakpoints.tablet}) {
   }
   :hover {
-    color: #1d39c4;
+    color: ${(props) => props.theme.palette.secondary.tag_hover_blue};
     cursor: pointer;
   }
 `;
@@ -82,7 +83,7 @@ function ReviewTitle({ title }) {
         </Grid>
 
         <IconGroup>
-          <FavoriteIcon sx={{ fontSize: { sm: 15, lg: 30 }, color: 'red', cursor: 'pointer' }} />
+          <FavoriteIcon sx={{ fontSize: { sm: 15, lg: 30 }, color: 'red' }} />
           20
           <StarIcon
             sx={{
