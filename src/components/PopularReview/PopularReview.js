@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { useState, useCallback } from 'react';
 import {
   Card as MuiCard,
   CardActions as MuiCardActions,
@@ -8,10 +9,13 @@ import {
   Typography,
   Container as MuiContainer,
   IconButton,
+  Button,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from '@mui/icons-material/Star';
+import TableRowsIcon from '@mui/icons-material/TableRows';
+import GridViewIcon from '@mui/icons-material/GridView';
 import { useNavigate } from 'react-router-dom';
 
 const Section = styled('section')({
@@ -21,21 +25,35 @@ const Section = styled('section')({
 
 const Heading = styled(Typography)({
   paddingLeft: '5em',
+  display: 'flex',
+  justifyContent: 'space-between',
 });
 
 const Container = styled(MuiContainer)(({ theme }) => ({
   paddingTop: theme.spacing(4),
+  marginLeft: '10%',
 }));
 
-const Card = styled(MuiCard)(() => ({
+const Card1 = styled(MuiCard)(() => ({
   height: '300px',
   display: 'flex',
   flexDirection: 'row',
   cursor: 'pointer',
 }));
 
-const CardMedia = styled(MuiCardMedia)(() => ({
+const Card2 = styled(MuiCard)(() => ({
+  height: '220px',
+  display: 'flex',
+  cursor: 'pointer',
+}));
+
+const CardMedia1 = styled(MuiCardMedia)(() => ({
   width: '40%',
+  height: 'auto',
+}));
+
+const CardMedia2 = styled(MuiCardMedia)(() => ({
+  width: '20%',
   height: 'auto',
 }));
 
@@ -44,10 +62,17 @@ const CardContent = styled(MuiCardContent)(() => ({
   width: '70%',
 }));
 
-const CardActions = styled(MuiCardActions)(() => ({
+const CardActions1 = styled(MuiCardActions)(() => ({
   alignSelf: 'flex-end',
   justifyContent: 'center',
 }));
+
+const CardActions2 = styled(MuiCardActions)(() => ({
+  alignSelf: 'flex-end',
+  display: 'inline',
+}));
+
+const View = styled('span')(() => ({}));
 
 const cards = [
   {
@@ -90,39 +115,105 @@ const cards = [
 
 export default function PopularReview() {
   const navigate = useNavigate();
+  const [shouldDisplayList, setShouldDisplayList] = useState(false);
+  const onListClicked = useCallback(() => {
+    setShouldDisplayList(true);
+  }, [setShouldDisplayList]);
 
+  const onGridClicked = useCallback(() => {
+    setShouldDisplayList(false);
+  }, [setShouldDisplayList]);
+  const isGridViewDisabled = shouldDisplayList === false;
+  const isListViewDisabled = shouldDisplayList === true;
   return (
     <Section>
-      <Heading variant="h4">Popular Reviews</Heading>
-      <Container maxWidth="md">
-        <Grid container spacing={4}>
-          {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={6}>
-              <Card onClick={() => navigate('/review/1')}>
-                <CardMedia image={card.img} title="Image title" />
-                <CardContent>
-                  <Typography>{card.desc}</Typography>
-                  <br />
-                  <Typography>Review Author: {card.author}</Typography>
-                  <br />
-                  <Typography>{card.comment}</Typography>
-                  <CardActions>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="star">
-                      <StarIcon sx={{ fontSize: 28 }} />
-                    </IconButton>
-                    <Typography variant="body2" color="text.secondary">
-                      {card.time} {card.date}
+      <Heading variant="h4">
+        Popular Reviews
+        <View>
+          <IconButton
+            aria-label="display as grids"
+            onClick={onGridClicked}
+            disabled={isGridViewDisabled}
+          >
+            <GridViewIcon />
+          </IconButton>
+          <IconButton
+            aria-label="display as slices"
+            onClick={onListClicked}
+            disabled={isListViewDisabled}
+          >
+            <TableRowsIcon />
+          </IconButton>
+          <Button>Sort By</Button>
+        </View>
+      </Heading>
+      {shouldDisplayList === false ? (
+        <Container maxWidth="80%">
+          <Grid container spacing={4}>
+            {cards.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={6}>
+                <Card1 onClick={() => navigate('/review/1')}>
+                  <CardMedia1 image={card.img} title="Image title" />
+                  <CardContent>
+                    <Typography variant="h5">{card.desc}</Typography>
+                    <br />
+                    <Typography variant="h6">Review Author: {card.author}</Typography>
+                    <br />
+                    <Typography>{card.comment}</Typography>
+                    <CardActions1>
+                      <IconButton aria-label="add to favorites">
+                        <FavoriteIcon />
+                      </IconButton>
+                      <IconButton aria-label="star">
+                        <StarIcon sx={{ fontSize: 28 }} />
+                      </IconButton>
+                      <Typography variant="body2" color="text.secondary">
+                        {card.time} {card.date}
+                      </Typography>
+                    </CardActions1>
+                  </CardContent>
+                </Card1>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      ) : null}
+
+      {shouldDisplayList === true ? (
+        <Container maxWidth="md">
+          <Grid container spacing={2}>
+            {cards.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={12}>
+                <Card2 onClick={() => navigate('/review/1')}>
+                  <CardMedia2 image={card.img} title="Image title" />
+                  <CardContent>
+                    <Typography>
+                      <Typography variant="h5" display="inline">
+                        {card.desc}
+                      </Typography>
+                      <CardActions2>
+                        <IconButton aria-label="add to favorites">
+                          <FavoriteIcon />
+                        </IconButton>
+                        <IconButton aria-label="star">
+                          <StarIcon sx={{ fontSize: 28 }} />
+                        </IconButton>
+                        <Typography variant="body2" color="text.secondary" display="inline">
+                          {card.time} {card.date}
+                        </Typography>
+                      </CardActions2>
                     </Typography>
-                  </CardActions>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+                    <br />
+                    <Typography variant="h6">Review Author: {card.author}</Typography>
+                    <br />
+                    <Typography>{card.comment}</Typography>
+                  </CardContent>
+                </Card2>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      ) : null}
     </Section>
   );
 }
