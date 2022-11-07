@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   Card as MuiCard,
   CardActions as MuiCardActions,
@@ -17,28 +17,42 @@ import StarIcon from '@mui/icons-material/Star';
 import TableRowsIcon from '@mui/icons-material/TableRows';
 import GridViewIcon from '@mui/icons-material/GridView';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAllReviews, selectReview } from '../../redux/slices/review';
 
 const Section = styled('section')({
-  width: '80%',
-  height: '55%',
+  width: '70%',
+  height: '100%',
 });
 
 const Heading = styled(Typography)({
+  fontWeight: '300',
   paddingLeft: '5em',
   display: 'flex',
   justifyContent: 'space-between',
 });
 
 const Container = styled(MuiContainer)(({ theme }) => ({
-  paddingTop: theme.spacing(4),
   marginLeft: '10%',
+  paddingTop: theme.spacing(4),
+  paddingLeft: theme.spacing(5),
+  [theme.breakpoints.up('laptop')]: {
+    maxWidth: '537px',
+  },
+  [theme.breakpoints.up('largeLaptop')]: {
+    maxWidth: '716px',
+  },
+  [theme.breakpoints.up('desktop')]: {
+    maxWidth: '1008px',
+  },
 }));
 
 const Card1 = styled(MuiCard)(() => ({
-  height: '300px',
+  height: '250px',
   display: 'flex',
   flexDirection: 'row',
   cursor: 'pointer',
+  backgroundColor: '#e2e2e2',
 }));
 
 const Card2 = styled(MuiCard)(() => ({
@@ -59,7 +73,7 @@ const CardMedia2 = styled(MuiCardMedia)(() => ({
 
 const CardContent = styled(MuiCardContent)(() => ({
   flexGrow: 1,
-  width: '70%',
+  width: '300px',
 }));
 
 const CardActions1 = styled(MuiCardActions)(() => ({
@@ -74,51 +88,18 @@ const CardActions2 = styled(MuiCardActions)(() => ({
 
 const View = styled('span')(() => ({}));
 
-const cards = [
-  {
-    img: 'https://i.ytimg.com/vi/qHy1f0yzPVI/movieposter_en.jpg',
-    desc: 'The Imitation Game',
-    author: 'Akinlabi Omo-Oso',
-    time: '22:30',
-    date: '10/10/2022',
-    comment:
-      'I have watched this awesome movie four times! The characters have become like old friends, thanks to·...',
-  },
-  {
-    img: 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg',
-    desc: 'Inception',
-    author: 'Tom Charity',
-    time: '15:30',
-    date: '12/10/2022',
-    comment:
-      "I hate my dreams. They're so ... infantile.\" Heaven knows what artist Laurie Anderson would make of Christopher Nolan's first film since ...",
-  },
-  {
-    img: 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
-    desc: 'The Godfather',
-    author: 'James Luxford',
-    time: '27:20',
-    date: '09/10/2022',
-    comment:
-      ' Even half a century since its release, it shouldn’t be difficult to convince you why The Godfather is worth catching this weekend for its anniversary...',
-  },
-  {
-    img: 'https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg',
-    desc: "Schindler's list",
-    author: 'Keith Garlington',
-    time: '02:50',
-    date: '17/10/2022',
-    comment:
-      'Many movies have looked at the Jewish Holocaust from a variety of different angles. There have been films... ',
-  },
-];
-
 export default function PopularReview() {
   const navigate = useNavigate();
   const [shouldDisplayList, setShouldDisplayList] = useState(false);
   const onListClicked = useCallback(() => {
     setShouldDisplayList(true);
   }, [setShouldDisplayList]);
+  const dispatch = useDispatch();
+  const reviewList = useSelector(selectReview);
+
+  useEffect(() => {
+    dispatch(fetchAllReviews());
+  }, []);
 
   const onGridClicked = useCallback(() => {
     setShouldDisplayList(false);
@@ -150,16 +131,16 @@ export default function PopularReview() {
       {shouldDisplayList === false ? (
         <Container maxWidth="80%">
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={6}>
+            {reviewList.map((review) => (
+              <Grid item key={review.id} xs={12} sm={6} md={6}>
                 <Card1 onClick={() => navigate('/review/1')}>
-                  <CardMedia1 image={card.img} title="Image title" />
+                  <CardMedia1 image={review.movie.posterImgUrl} title="Image title" />
                   <CardContent>
-                    <Typography variant="h5">{card.desc}</Typography>
+                    <Typography variant="h5">{review.movie.name}</Typography>
                     <br />
-                    <Typography variant="h6">Review Author: {card.author}</Typography>
+                    <Typography variant="h6">Review Author: {review.author.username}</Typography>
                     <br />
-                    <Typography>{card.comment}</Typography>
+                    <Typography>{review.contents}</Typography>
                     <CardActions1>
                       <IconButton aria-label="add to favorites">
                         <FavoriteIcon />
@@ -168,7 +149,7 @@ export default function PopularReview() {
                         <StarIcon sx={{ fontSize: 28 }} />
                       </IconButton>
                       <Typography variant="body2" color="text.secondary">
-                        {card.time} {card.date}
+                        {review.updatedTime}
                       </Typography>
                     </CardActions1>
                   </CardContent>
@@ -182,14 +163,14 @@ export default function PopularReview() {
       {shouldDisplayList === true ? (
         <Container maxWidth="md">
           <Grid container spacing={2}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={12}>
+            {reviewList.map((review) => (
+              <Grid item key={review.id} xs={12} sm={6} md={12}>
                 <Card2 onClick={() => navigate('/review/1')}>
-                  <CardMedia2 image={card.img} title="Image title" />
+                  <CardMedia2 image={review.movie.posterImgUrl} title="Image title" />
                   <CardContent>
                     <Typography>
                       <Typography variant="h5" display="inline">
-                        {card.desc}
+                        {review.movie.name}
                       </Typography>
                       <CardActions2>
                         <IconButton aria-label="add to favorites">
@@ -199,14 +180,14 @@ export default function PopularReview() {
                           <StarIcon sx={{ fontSize: 28 }} />
                         </IconButton>
                         <Typography variant="body2" color="text.secondary" display="inline">
-                          {card.time} {card.date}
+                          {review.updatedTime}
                         </Typography>
                       </CardActions2>
                     </Typography>
                     <br />
-                    <Typography variant="h6">Review Author: {card.author}</Typography>
+                    <Typography variant="h6">Review Author: {review.author.username}</Typography>
                     <br />
-                    <Typography>{card.comment}</Typography>
+                    <Typography>{review.contents}</Typography>
                   </CardContent>
                 </Card2>
               </Grid>
