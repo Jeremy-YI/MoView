@@ -26,7 +26,6 @@ const Section = styled('section')({
 });
 
 const Heading = styled(Typography)({
-  fontWeight: '300',
   paddingLeft: '5em',
   display: 'flex',
   justifyContent: 'space-between',
@@ -48,7 +47,7 @@ const Container = styled(MuiContainer)(({ theme }) => ({
 }));
 
 const Card1 = styled(MuiCard)(() => ({
-  height: '250px',
+  height: '300px',
   display: 'flex',
   flexDirection: 'row',
   cursor: 'pointer',
@@ -73,7 +72,7 @@ const CardMedia2 = styled(MuiCardMedia)(() => ({
 
 const CardContent = styled(MuiCardContent)(() => ({
   flexGrow: 1,
-  width: '300px',
+  width: '75%',
 }));
 
 const CardActions1 = styled(MuiCardActions)(() => ({
@@ -140,7 +139,16 @@ export default function PopularReview() {
                     <br />
                     <Typography variant="h6">Review Author: {review.author.username}</Typography>
                     <br />
-                    <Typography>{review.contents}</Typography>
+                    <Typography
+                      sx={{
+                        display: '-webkit-box',
+                        overflow: 'hidden',
+                        WebkitBoxOrient: 'vertical',
+                        WebkitLineClamp: 3,
+                      }}
+                    >
+                      Comment: {review.contents}
+                    </Typography>
                     <CardActions1>
                       <IconButton aria-label="add to favorites">
                         <FavoriteIcon />
@@ -187,7 +195,16 @@ export default function PopularReview() {
                     <br />
                     <Typography variant="h6">Review Author: {review.author.username}</Typography>
                     <br />
-                    <Typography>{review.contents}</Typography>
+                    <Typography
+                      sx={{
+                        display: '-webkit-box',
+                        overflow: 'hidden',
+                        WebkitBoxOrient: 'vertical',
+                        WebkitLineClamp: 3,
+                      }}
+                    >
+                      Comment: {review.contents}
+                    </Typography>
                   </CardContent>
                 </Card2>
               </Grid>
