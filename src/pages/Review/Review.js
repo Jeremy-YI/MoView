@@ -34,20 +34,22 @@ const Content = styled.div`
 function Review() {
   const { reviewId } = useParams();
   const dispatch = useDispatch();
+  console.log('first');
 
   useEffect(() => {
+    console.log('!!!', reviewId);
     dispatch(findById(reviewId));
-    return () => {
-      dispatch(cleanFilter());
-    };
-  }, [reviewId]);
+    // return () => {
+    //   dispatch(cleanFilter());
+    // };
+  }, []);
 
   return (
     <Container>
       <CenterWrapper>
         <ReviewTitle />
         <Content>
-          <MovieCard movieId={1} />
+          <MovieCard />
           <ReviewContent />
           <AuthorCard userId={1} />
         </Content>
