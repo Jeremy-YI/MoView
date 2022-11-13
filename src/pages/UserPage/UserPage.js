@@ -6,10 +6,12 @@ import MuiAvatar from '@mui/material/Avatar';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import UserTag from '../../components/UserTag/UserTag';
 import Root from '../../layout/Root';
+import PopularReview from '../../components/PopularReview/PopularReview';
+import UserPageButtons from '../../components/UserPageButtons/UserPageButtons';
 
 const Avatar = styled(MuiAvatar)({
   marginTop: '2em',
-  marginLeft: '2em',
+  marginLeft: '1em',
 });
 
 const Box = styled(MuiBox)({
@@ -39,6 +41,8 @@ function UserPage() {
           </Grid>
         </Grid>
       </Box>
+      <UserPageButtons />
+      <PopularReview />
     </>
   );
 }
