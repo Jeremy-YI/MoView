@@ -3,7 +3,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import { useNavigate } from 'react-router-dom';
 
 const style = {
   width: '100%',
@@ -11,21 +10,32 @@ const style = {
   height: 250,
   bgcolor: '#e3e3e3',
   borderStyle: 'solid',
+  fontSize: '1.5rem',
+  justifyContent: 'center',
 };
 
-export default function UserTag(movie) {
-  const navigate = useNavigate();
-  const { id, name } = movie || {};
-  const handleClick = () => {
-    navigate(`../movie/${id}`, { replace: true });
-  };
-
+export default function UserTag() {
   return (
     <List sx={style} component="nav" aria-label="mailbox folders">
-      <ListItem onClick={handleClick}>
-        <ListItemText primary={name} />
+      <ListItem>
+        <ListItemText primary="some tag" />
       </ListItem>
       <Divider />
+      <ListItem>
+        <ListItemText primary="another tag" />
+      </ListItem>
+      <Divider />
+      <ListItem>
+        <ListItemText primary="one more tag" />
+      </ListItem>
+      <Divider />
+      <ListItem>
+        <ListItemText primary="one more tag" />
+      </ListItem>
+      <Divider />
+      <ListItem>
+        <ListItemText primary="last tag" />
+      </ListItem>
     </List>
   );
 }
