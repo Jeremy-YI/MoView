@@ -1,8 +1,14 @@
+/* eslint-disable import/named */
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import useEffect from 'react';
+import { fetchAllTags, selectTag } from '../../redux/slices/tag';
 
 const style = {
   width: '100%',
@@ -15,27 +21,22 @@ const style = {
 };
 
 export default function UserTag() {
+  const dispatch = useDispatch();
+  const tagList = useSelector(selectTag);
+  useEffect(() => {
+    dispatch(fetchAllTags());
+  }, []);
+
   return (
-    <List sx={style} component="nav" aria-label="mailbox folders">
-      <ListItem>
-        <ListItemText primary="some tag" />
-      </ListItem>
-      <Divider />
-      <ListItem>
-        <ListItemText primary="another tag" />
-      </ListItem>
-      <Divider />
-      <ListItem>
-        <ListItemText primary="one more tag" />
-      </ListItem>
-      <Divider />
-      <ListItem>
-        <ListItemText primary="one more tag" />
-      </ListItem>
-      <Divider />
-      <ListItem>
-        <ListItemText primary="last tag" />
-      </ListItem>
-    </List>
+    <>
+      {tagList.map((tag) => (
+        <List sx={style} component="nav" aria-label="mailbox folders">
+          <ListItem key={tag.id}>
+            <ListItemText primary={tag.name} />
+          </ListItem>
+          <Divider />
+        </List>
+      ))}
+    </>
   );
 }
