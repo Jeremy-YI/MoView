@@ -10,8 +10,8 @@ import PopularReview from '../../components/PopularReview/PopularReview';
 import UserPageButtons from '../../components/UserPageButtons/UserPageButtons';
 
 const Avatar = styled(MuiAvatar)({
-  marginTop: '2em',
-  marginLeft: '1em',
+  marginTop: '3em',
+  marginLeft: '2em',
 });
 
 const Box = styled(MuiBox)({
@@ -30,7 +30,7 @@ function UserPage() {
             <Avatar
               alt="Remy Sharp"
               src="https://www.denofgeek.com/wp-content/uploads/2019/02/mcu-1-iron-man.jpg?fit=1200%2C675"
-              sx={{ width: 150, height: 150 }}
+              sx={{ width: 170, height: 170 }}
             />
           </Grid>
           <Grid item xs={6}>
