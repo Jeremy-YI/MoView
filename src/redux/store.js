@@ -4,6 +4,7 @@ import movieReducer from './slices/movie';
 import reviewReducer from './slices/review';
 import commentReducer from './slices/comment';
 import userReducer from './slices/user';
+import tagReducer from './slices/tag';
 
 const reducer = combineReducers({
   count: counterReducer,
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   comment: commentReducer,
   review: reviewReducer,
   user: userReducer,
+  tag: tagReducer,
 });
 
 const store = configureStore({
