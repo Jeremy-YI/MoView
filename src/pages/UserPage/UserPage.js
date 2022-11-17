@@ -11,7 +11,6 @@ import UserPageButtons from '../../components/UserPageButtons/UserPageButtons';
 
 const Avatar = styled(MuiAvatar)({
   marginTop: '3em',
-  marginLeft: '2em',
 });
 
 const Box = styled(MuiBox)({
