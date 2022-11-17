@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const NameInput = styled.h1`
   padding: 0 1.5em;
+  margin-top: 1em;
 `;
 
 const SelfIntro = styled.h2`
