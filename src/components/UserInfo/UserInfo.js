@@ -40,7 +40,7 @@ export default function UserInfo() {
     <Box
       sx={{
         maxwidth: 550,
-        height: 250,
+        height: 300,
         borderStyle: 'solid',
         backgroundColor: '#e3e3e3',
         '&:hover': {
