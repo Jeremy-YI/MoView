@@ -5,10 +5,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchAllTags, selectTag } from '../../redux/slices/tag';
+import { fetchAllTags } from '../../redux/slices/tag';
 
 const style = {
   width: '100%',

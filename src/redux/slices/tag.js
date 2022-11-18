@@ -83,6 +83,6 @@ export const tagSlice = createSlice({
   },
 });
 
-export const selectTag = (state) => state.tagList;
+export const selectTags = (state) => state.tag.tagList;
 
 export default tagSlice.reducer;
