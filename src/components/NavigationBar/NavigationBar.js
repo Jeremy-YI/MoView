@@ -2,12 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 // import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import { logout } from '../../redux/slices/user';
+import SearchBar from '../SearchBar/SearchBar';
 
 const Container = styled.header(
   ({ theme, isHomePage }) => `
@@ -63,7 +64,7 @@ export default function NavigationBar() {
           width: { xs: '40%', sm: '55%' },
         }}
       >
-        {isHomePage && <TextField fullWidth id="outlined-basic" label="" variant="outlined" />}
+        {isHomePage && <SearchBar />}
       </Box>
       <UserInfo onClick={handleAuth}>{isLogin ? 'Logout' : 'Sign in'}</UserInfo>
       <AccountCircleIcon sx={{ fontSize: { sm: 50, lg: 75 }, color: '#D0D0D0' }} />
