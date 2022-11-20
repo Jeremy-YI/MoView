@@ -24,6 +24,7 @@ const router = createBrowserRouter(
         <Route path=":id/:token" element={<Login />} />
       </Route>
       <Route path="/register" element={<Register />} />
+      <Route path="/user" element={<UserPage />} />
       <Route path="/404" element={<NotFound404 />} />
       <Route path="/*" element={<NotFound404 />} />
     </>

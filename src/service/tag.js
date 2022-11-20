@@ -5,8 +5,6 @@ class TagService {
 
   static getById = (tagId) => http.get(`/tags/${tagId}`);
 
-  static getByUserId = (userId) => http.get(`/tags/user/${userId}`);
-
   static create = (newTag) => http.post('/tags/createTags', newTag);
 
   static update = (tagId, updateTag) => http.put(`/tags/${tagId}`, updateTag);
