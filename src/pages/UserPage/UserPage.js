@@ -5,8 +5,8 @@ import { styled } from '@mui/material/styles';
 import MuiAvatar from '@mui/material/Avatar';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import UserTag from '../../components/UserTag/UserTag';
-import Root from '../../layout/Root';
-import PopularReview from '../../components/PopularReview/PopularReview';
+// import Root from '../../layout/Root';
+// import PopularReview from '../../components/PopularReview/PopularReview';
 import UserPageButtons from '../../components/UserPageButtons/UserPageButtons';
 
 const Avatar = styled(MuiAvatar)({
@@ -22,7 +22,7 @@ const Box = styled(MuiBox)({
 function UserPage() {
   return (
     <>
-      <Root />
+      {/* <Root /> */}
       <Box sx={{ flexGrow: 3 }}>
         <Grid container spacing={3}>
           <Grid item xs={2}>
@@ -41,7 +41,7 @@ function UserPage() {
         </Grid>
       </Box>
       <UserPageButtons />
-      <PopularReview />
+      {/* <PopularReview /> */}
     </>
   );
 }
