@@ -6,7 +6,6 @@ import MuiAvatar from '@mui/material/Avatar';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import UserTag from '../../components/UserTag/UserTag';
 import UserPageButtons from '../../components/UserPageButtons/UserPageButtons';
-import NavigationBar from '../../components/NavigationBar/NavigationBar';
 
 const Avatar = styled(MuiAvatar)({
   marginTop: '3em',
@@ -21,7 +20,6 @@ const Box = styled(MuiBox)({
 function UserPage() {
   return (
     <>
-      <NavigationBar />
       <Box sx={{ flexGrow: 3 }}>
         <Grid container spacing={3}>
           <Grid item xs={2}>
