@@ -28,7 +28,7 @@ export default function UserTag() {
 
   return (
     <List container sx={style} component="nav" aria-label="mailbox folders">
-      {tagList.map((tag) => (
+      {tagList.slice(0, 6).map((tag) => (
         <>
           <ListItem item key={tag.id}>
             <ListItemText primary={tag.name} />
