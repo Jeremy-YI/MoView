@@ -38,9 +38,7 @@ function UserPage() {
         </Grid>
       </Box>
       <UserPageButtons />
-      {/* <PopularReview /> */}
     </>
   );
 }
-
 export default UserPage;

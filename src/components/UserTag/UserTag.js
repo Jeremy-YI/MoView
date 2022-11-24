@@ -1,5 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -19,6 +17,10 @@ const style = {
   justifyContent: 'center',
 };
 
+const ListItemStyle = {
+  textAlign: 'center',
+};
+
 export default function UserTag() {
   const dispatch = useDispatch();
   const tagList = useSelector((state) => state.tag.tagList);
@@ -27,15 +29,13 @@ export default function UserTag() {
   }, []);
 
   return (
-    <List container sx={style} component="nav" aria-label="mailbox folders">
+    <List sx={style} component="nav" aria-label="mailbox folders">
       {tagList.slice(0, 6).map((tag) => (
-        <>
-          <ListItem item key={tag.id}>
-            <ListItemText primary={tag.name} />
-          </ListItem>
-          <Divider />
-        </>
+        <ListItem sx={ListItemStyle} key={tag.id}>
+          <ListItemText primary={tag.name} />
+        </ListItem>
       ))}
+      <Divider />
     </List>
   );
 }
