@@ -18,8 +18,7 @@ export const Container = styled.div`
 `;
 
 export const LogoStyle = styled.div`
-  margin-top: 40px;
-  margin-left: 20px;
+  padding: 40px 10px;
   @media screen and (max-width: 500px) {
     width: 80px;
     height: 30px;
@@ -30,7 +29,7 @@ export const LogoStyle = styled.div`
 export const SignInStyle = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-size: 30px;
   font-weight: 700;
   @media screen and (max-width: 500px) {
@@ -53,12 +52,12 @@ export const TextStyle = styled.h4`
 `;
 
 export const StyledInput = styled.input`
-  width: 380px;
+  width: 450px;
   background-color: ${(props) => props.theme.colors.text_light_gray};
   height: 40px;
   border-radius: 10px;
   border: 1px solid ${(props) => props.theme.colors.text_light_gray};
-  margin: 10px 0 20px 0;
+  margin: 10px 0 30px 0;
   padding: 20px;
   box-sizing: border-box;
   font-size: 16px;
@@ -79,8 +78,7 @@ export const SignInButtonStyle = styled.div`
   height: 40px;
   align-self: center;
   font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 3px;
+  margin: 40px 0;
   &:hover {
     opacity: 0.8;
   }
@@ -102,7 +100,7 @@ export const SignInLoadingStyle = styled(LoadingButton)`
 `;
 
 export const TextStyleP = styled.p`
-  font-size: 12px;
+  font-size: 16px;
   margin-bottom: 10px;
   @media screen and (max-width: 600px) {
     font-size: 5px;
@@ -114,31 +112,4 @@ export const RegisterButton = styled.span`
   cursor: pointer;
   text-decoration: underline;
   color: ${(props) => props.theme.colors.text_blue};
-`;
-
-export const PasswordButton = styled.span`
-  color: ${(props) => props.theme.colors.text_blue};
-  border: none;
-  cursor: pointer;
-  text-decoration: underline;
-  margin-left: 10px;
-`;
-
-export const LongButtonStyle = styled.button`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: white;
-  color: black;
-  width: 250px;
-  border: 1px solid black rgba(0, 0, 0, 0.6);
-  margin-bottom: 5px;
-  border-radius: 15px;
-  height: 40px;
-  font-size: 15px;
-  cursor: pointer;
-  @media screen and (max-width: 500px) {
-    width: 150px;
-    font-size: 10px;
-  }
 `;

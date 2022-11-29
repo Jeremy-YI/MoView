@@ -3,9 +3,6 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Google from '../../assets/icons/google.png';
-import Facebook from '../../assets/icons/facebook.png';
-import Twitter from '../../assets/icons/twitter.png';
 import Logo from '../Logo/Logo';
 import { login } from '../../redux/slices/user';
 import { ALERT_SUCCESS, ALERT_ERROR } from '../../constants/alertType';
@@ -20,10 +17,8 @@ import {
   Container,
   SignInButtonStyle,
   SignInLoadingStyle,
-  LongButtonStyle,
   StyledInput,
   RegisterButton,
-  PasswordButton,
 } from './SignIn.styled';
 
 function SignIn() {
@@ -137,20 +132,7 @@ function SignIn() {
         <TextStyleP>
           Don&apos;t have an account?{' '}
           <RegisterButton onClick={() => navigate('/register')}>Register here</RegisterButton>
-          <PasswordButton>Forgot password</PasswordButton>
         </TextStyleP>
-        <LongButtonStyle>
-          <img src={Google} alt="google" width="20px" />
-          Sign in with Google
-        </LongButtonStyle>
-        <LongButtonStyle>
-          <img src={Facebook} alt="Facebook" width="20px" />
-          Sign in with Facebook
-        </LongButtonStyle>
-        <LongButtonStyle>
-          <img src={Twitter} alt="Twitter" width="20px" />
-          Sign in with Twitter
-        </LongButtonStyle>
       </Container>
     </>
   );
